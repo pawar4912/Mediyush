@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,6 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', function () {
             return view('admin.dashboard');
         });
+        Route::get('/jobs/list',[JobController::class,'getJobs'])->name('admin.jobs.list');
     });
 });
