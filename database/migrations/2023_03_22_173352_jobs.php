@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('salary');
             $table->string('experience');
             $table->string('description');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

@@ -14,9 +14,23 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
         if (\Auth::guard('admin')->attempt($request->only(['email','password']), $request->get('remember'))){
+            if($request->remember===null){
+                setcookie('login_email',$request->email,100);
+                setcookie('login_pass',$request->password,100);
+             }
+             else{
+                setcookie('login_email',$request->email,time()+60*60*24*100);
+                setcookie('login_pass',$request->password,time()+60*60*24*100);
+ 
+             }
             return redirect()->intended('/admin/dashboard');
         }
 
         return back()->withInput($request->only('email', 'remember'))->with('error','Invalid Login Details');
+    }
+
+    public function logout() {
+        \Auth::guard('admin')->logout();
+        return redirect('admin/login')->with('success','Admin logout successfully !!!');
     }
 }
