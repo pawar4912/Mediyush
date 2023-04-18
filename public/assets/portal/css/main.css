@@ -1,0 +1,20 @@
+/* .cat-text-color{
+    color: #666565;
+    font-size: 14px;
+    text-align: justify;
+} */
+
+.lable-head{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lable-btn {
+    background: #00B074;
+    padding: 12px;
+    border: 1px rounded;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+}
