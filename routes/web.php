@@ -47,9 +47,12 @@ Route::prefix('admin')->group(function () {
 });
 
 /******** Portal Routes ************/
-// Route::get('/', function () {
-//     return view('portal.home');
-// });
+Route::get('/', function () {
+    return view('portal.home');
+});
+Route::get('/home', function () {
+    return view('portal.home');
+});
 
 Route::get('login', function () {
     return view('portal.login');
