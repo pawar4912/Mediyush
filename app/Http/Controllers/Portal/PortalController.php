@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class PortalController extends Controller
@@ -21,13 +21,12 @@ class PortalController extends Controller
         if ($req->password !== $req->cpassword) {
             return redirect()->back()->withErrors('Password and confirm password should be same');
         }
-
-        Users::create([
-            'first_name' => $req->firstName,
-            'last_name' => $req->lastName,
-            'email' => $req->email,
-            'password' => Hash::make($req->password)
-        ]);
+        $user = new User;
+        $user->first_name = $req->firstName;
+        $user->last_name = $req->lastName;
+        $user->email = $req->email;
+        $user->password = bcrypt($req->password);
+        $user->save();
 
         return back()->with('success','You have successfully registered & Please login!');
     }
