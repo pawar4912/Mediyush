@@ -15,10 +15,10 @@ class IsUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->is_user == 1){
+        if(\Auth::guard('user')->check()) {
             return $next($request);
         }
-   
-        return redirect('/')->with('error',"You don't have Job access.");
+        return redirect()->route('login')
+                ->with('error','Please log in again');
     }
 }

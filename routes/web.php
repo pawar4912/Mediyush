@@ -65,16 +65,19 @@ Route::controller(PortalLoginController::class)->group(function() {
 });
 Route::post('/createjob',[JobController::class,'createJob'])->name('createjob');
 
-// Route::group(['middleware' => ['user']], function () {
-//     Route::get('/job', function () {
-//         return view('portal.job');
-//     });
-// });
+Route::get('/job',[JobController::class,'viewJob'])->name('portal.job');
 
-Route::get('/job', function () {
-    return view('portal.job');
-});
+Route::get('/myaccount',[PortalLoginController::class,'myAcnt'])->name('portal.profile');
+
+Route::get('/course',[PortalLoginController::class,'courses'])->name('portal.course');
+
+Route::get('/logout',[PortalLoginController::class,'logout']);
 
 Route::get('/post/job', function () {
     return view('portal.postjob');
 });
+
+Route::get('/job/applyjob/{id}',[JobController::class,'applyJob']);
+
+
+
