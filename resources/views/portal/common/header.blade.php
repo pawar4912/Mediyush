@@ -56,21 +56,31 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Service</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="courses.html" class="dropdown-item">Course</a>
-                            <a href="courses.html" class="dropdown-item">Events</a>
-                            <a href="courses.html" class="dropdown-item">Webinar</a>
-                            <a href="courses.html" class="dropdown-item">Blog</a>
-                            <a href="courses.html" class="dropdown-item">News</a>
+                            <a href="/course" class="dropdown-item">Course</a>
+                            <a href="/course" class="dropdown-item">Events</a>
+                            <a href="/course" class="dropdown-item">Webinar</a>
+                            <a href="/course" class="dropdown-item">Blog</a>
+                            <a href="/course" class="dropdown-item">News</a>
                         </div>
                     </div>
-                    <a href="job-list.html" class="nav-item nav-link">Jobs</a>
+                    <a href="/job" class="nav-item nav-link">Jobs</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    @if(isset($user->id))
+                    <a href="/cart" class="nav-item nav-link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    <a href="/logout" class="nav-item nav-link"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
+                    @endif
                 </div>
+
+                @if(isset($user->id))
+                  <a href="/myaccount" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">My Account<i class="fa fa-arrow-right ms-3"></i></a>
+                @else
                 <a href="/login" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                @endif
+
             </div>
         </nav>
         <!-- Navbar End -->
