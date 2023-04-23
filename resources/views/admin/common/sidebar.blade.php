@@ -34,6 +34,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/products/list">
+                <i class="ri-store-3-line"></i><span>Shop Products</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/logout">
                 <i class="ri-logout-circle-r-line"></i><span>Log Out</span>
             </a>
