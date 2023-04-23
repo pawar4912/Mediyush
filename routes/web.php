@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\JobController as AdminJobController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\GallaryPhotosController as AdminGallaryPhotosController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 
@@ -42,6 +44,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/events/activate/{id}',[AdminEventController::class,'eventActivate']);
         Route::get('/events/deactivate/{id}',[AdminEventController::class,'eventDeactivate']);
 
+        Route::get('/users/list',[AdminUserController::class,'getUsers'])->name('admin.users.list');
+
+        Route::get('/gallary/list',[AdminGallaryPhotosController::class,'getGallaryPhotos'])->name('admin.gallary.list');
+        Route::get('/gallary/add', function () {
+            return view('admin.gallary.add');
+        });
+        Route::post('/gallary/add',[AdminGallaryPhotosController::class,'gallaryPhotoAdd'])->name('admin.gallary.add');
+        Route::get('/gallary/edit/{id}',[AdminGallaryPhotosController::class,'getEditGallaryPhoto']);
+        Route::post('/gallary/edit/{id}',[AdminGallaryPhotosController::class,'editGallaryPhoto']);
+        Route::get('/gallary/delete/{id}',[AdminGallaryPhotosController::class,'deleteGallaryPhoto']);
+        
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
     });
 });

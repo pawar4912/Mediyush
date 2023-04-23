@@ -19,6 +19,21 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/courses/list">
+                <i class="ri-book-3-line"></i><span>Courses</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/users/list">
+                <i class="ri-user-3-line"></i><span>Users</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/gallary/list">
+                <i class="ri-gallery-fill"></i><span>Gallary Photos</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/logout">
                 <i class="ri-logout-circle-r-line"></i><span>Log Out</span>
             </a>

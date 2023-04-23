@@ -52,10 +52,7 @@ class EventController extends Controller
         $event->venue = $req->venue;
         $event->description = $req->description;
         $event->price = $req->price;
-        if($req->image != ''){        
-            $path = public_path().'/uploads/images/';
-  
-            //code for remove old file
+        if($req->image != ''){
             if($event->image != ''  && $event->image != null){
                  $file_old = public_path('events').'/'.$event->image;
                  unlink($file_old);
