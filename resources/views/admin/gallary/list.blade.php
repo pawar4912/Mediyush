@@ -12,10 +12,10 @@
             <main id="main" class="main">
                 <div class="card">
                     <div class="p-2">
-                        <a href="/admin/events/add" class="btn btn-outline-primary float-right"> Add Events </a>
+                        <a href="/admin/gallary/add" class="btn btn-outline-primary float-right"> Add Gallary Photos </a>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Events Lists</h5>
+                        <h5 class="card-title">Gallary Photos Lists</h5>
                         @if (session('success'))
                         <div class="col-sm-12">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,45 +28,30 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Venue</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Photos</th>
+                                    <th scope="col">Position</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($events as $event)
+                                @foreach ($gallaryPhotos as $gallaryPhoto)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $event->name }}</td>
-                                    <td>{{ $event->venue }}</td>
-                                    <td>{{ $event->description }}</td>
-                                    <td>{{ $event->price }}</td>
-                                    <td><img src="/events/{{$event->image}}" heigth="100" width="100" alt="tag"></td>
+                                    <td><img src="/gallary_photos/{{ $gallaryPhoto->photos }}" heigth="150" width="150" alt="tag"></td>
+                                    <td>{{ $gallaryPhoto->position }}</td>
                                     <td>
-                                        <?php if(!$event->status){ ?>
-
-                                        <a href="/admin/events/activate/{{ $event->id }}" class="btn btn-success">Activate</a>
-
-                                        <?php }else{ ?>
-
-                                        <a href="/admin/events/deactivate/{{ $event->id }}" class="btn btn-danger">Deactivate</a>
-
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <a href="/admin/events/edit/{{ $event->id }}" class="btn btn-secondary">
+                                        <a href="/admin/gallary/edit/{{ $gallaryPhoto->id }}" class="btn btn-success">
                                             <i class="ri-edit-2-line"></i>
+                                        </a>
+                                        <a href="/admin/gallary/delete/{{ $gallaryPhoto->id }}" class="btn btn-danger">
+                                            <i class="ri-delete-bin-4-line"></i>
                                         </a>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $events->links() }}
+                        {{ $gallaryPhotos->links() }}
                     </div>
                 </div>
             </main>
