@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\GallaryPhotosController as AdminGallaryPhotosController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 
@@ -64,6 +65,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/products/edit/{id}',[AdminProductController::class,'getEditProducts']);
         Route::post('/products/edit/{id}',[AdminProductController::class,'editProduct'])->name('admin.products.edit');
         Route::get('/products/delete/{id}',[AdminProductController::class,'deleteProducts']);
+
+        Route::get('/news/list',[AdminProductController::class,'getProductPhotos'])->name('admin.news.list');
+
+        Route::get('/courses/list',[AdminCourseController::class,'getCourses'])->name('admin.courses.list');
+        Route::get('/courses/add', function () {
+            return view('admin.courses.add');
+        });
+        Route::post('/courses/add',[AdminCourseController::class,'CourseAdd'])->name('admin.courses.add');
+        Route::get('/courses/edit/{id}',[AdminCourseController::class,'getEditCourse']);
+        Route::post('/courses/edit/{id}',[AdminCourseController::class,'editCourse']);
         
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
     });
