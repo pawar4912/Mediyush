@@ -55,15 +55,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="/home" class="nav-item nav-link active">Home</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Service</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="/course" class="dropdown-item">Course</a>
-                            <a href="/course" class="dropdown-item">Events</a>
-                            <a href="/course" class="dropdown-item">Webinar</a>
-                            <a href="/course" class="dropdown-item">Blog</a>
-                            <a href="/course" class="dropdown-item">News</a>
+                            <a href="/service/course" class="dropdown-item">Course</a>
+                            <a href="/service/events" class="dropdown-item">Events</a>
+                            <a href="/service/webinar" class="dropdown-item">Webinar</a>
+                            <a href="/service/blog" class="dropdown-item">Blog</a>
+                            <a href="/service/news" class="dropdown-item">News</a>
                         </div>
                     </div>
                     <a href="/job" class="nav-item nav-link">Jobs</a>
