@@ -59,7 +59,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Service</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="/course" class="dropdown-item">Course</a>
+                            <a href="/service/course" class="dropdown-item">Course</a>
                             <a href="/service/events" class="dropdown-item">Events</a>
                             <a href="/service/webinar" class="dropdown-item">Webinar</a>
                             <a href="/service/blog" class="dropdown-item">Blog</a>

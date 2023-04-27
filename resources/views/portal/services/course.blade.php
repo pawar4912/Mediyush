@@ -18,22 +18,22 @@
 <!-- Category Start -->
 <div class="container-xxl py-5">
   <div class="container">
-      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore Our Events</h1>
+      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore Our Courses</h1>
       <div class="row g-4">
-      @if($events && count($events) !== 0)
-      @foreach ($events as $event)
+      @if($course && count($course) !== 0)
+      @foreach ($course as $course)
 				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
 						<a class="cat-item rounded p-4" href="#">
 							<div class="d-flex align-items-center">
-								<img class="img-fluid flex-shrink-0 rounded" src="/events/{{$event->image}}">
+								<img class="img-fluid flex-shrink-0 rounded" src="/courses/{{$course->banner}}" style="width: 80%; height: 80%">
               </div>
-							<h6 class="mb-3 mt-4">{{ $event->name }}</h6>
+							<h6 class="mb-3 mt-4">{{ $course->name }}</h6>
 						</a>
 				</div>
 			@endforeach
       @else
 			<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-					<p>Currently no events available!</p>
+					<p>Currently no course is available!</p>
 			</div>
 			@endif
       </div>

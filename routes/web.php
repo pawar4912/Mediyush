@@ -119,3 +119,5 @@ Route::get('/service/events',[ServiceController::class,'getEvent'])->name('porta
 
 Route::get('/service/course',[ServiceController::class,'getCourse'])->name('portal.course');
 
+Route::get('/service/news',[ServiceController::class,'getNews'])->name('portal.news');
+
