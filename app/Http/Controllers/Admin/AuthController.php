@@ -13,16 +13,9 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (\Auth::guard('admin')->attempt($request->only(['email','password']), $request->get('remember'))){
-            if($request->remember===null){
-                setcookie('login_email',$request->email,100);
-                setcookie('login_pass',$request->password,100);
-             }
-             else{
-                setcookie('login_email',$request->email,time()+60*60*24*100);
-                setcookie('login_pass',$request->password,time()+60*60*24*100);
- 
-             }
+        if (\Auth::guard('admin')->attempt($request->only(['email','password']))){
+            setcookie('login_email',$request->email,time()+60*60*24*100);
+            setcookie('login_pass',$request->password,time()+60*60*24*100);
             return redirect()->intended('/admin/dashboard');
         }
 

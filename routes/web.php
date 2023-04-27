@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
+use App\Http\Controllers\Portal\ServiceController as ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,12 +82,11 @@ Route::prefix('admin')->group(function () {
 });
 
 /******** Portal Routes ************/
-Route::get('/', function () {
-    return view('portal.home');
-});
-Route::get('/home', function () {
-    return view('portal.home');
-});
+// Route::get('/', function () {
+//     return view('portal.home');
+// });
+
+Route::get('/home',[PortalLoginController::class,'home'])->name('portal.home');
 
 Route::get('login', function () {
     return view('portal.login');
@@ -113,5 +113,9 @@ Route::get('/post/job', function () {
 
 Route::get('/job/applyjob/{id}',[JobController::class,'applyJob']);
 
+// service routes
 
+Route::get('/service/events',[ServiceController::class,'getEvent'])->name('portal.events');
+
+Route::get('/service/course',[ServiceController::class,'getCourse'])->name('portal.course');
 

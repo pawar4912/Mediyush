@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Session;
+use App\Models\Event;
+use App\Models\Product;
+use App\Models\GallaryPhoto;
 
 class PortalController extends Controller
 {
@@ -71,5 +74,14 @@ class PortalController extends Controller
     Auth::logout();
     Session::flush();
     return redirect('/');
+  }
+
+  public function home(){
+    $events = Event::orderBy('id', 'DESC')->limit(4)->get();
+
+    $products = Product::orderBy('id', 'DESC')->limit(4)->get();
+
+    $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos'));
   }
 }

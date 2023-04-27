@@ -153,34 +153,23 @@
             <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
         </div>
         <div class="row g-4">
+            @if($events && count($events) !== 0)
+            @foreach ($events as $event)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                 <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h6 class="mb-3">Marketing</h6>
-                    <p class="mb-0">123 Vacancy</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/events/{{$event->image}}">
+                    </div>
+                    <h6 class="mb-3">{{ $event->name }}</h6>
+                    <p class="mb-0">{{ $event->venue }}</p>
                 </a>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                    <h6 class="mb-3">Customer Service</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
+            @endforeach
+            @else
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p>Currently no events available!</p>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                    <h6 class="mb-3">Human Resource</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-tasks text-primary mb-4"></i>
-                    <h6 class="mb-3">Project Management</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -190,38 +179,27 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="lable-head">
-            <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Shop Products</h1>
+            <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Products</h1>
             <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
         </div>
         <div class="row g-4">
+            @if($products && count($products) !== 0)
+            @foreach ($products as $product)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                 <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h6 class="mb-3">Marketing</h6>
-                    <p class="mb-0">123 Vacancy</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/products/{{ $product->image }}">
+                    </div>
+                    <h6 class="mb-3 mt-3">{{ $product->name }}</h6>
+                    <p class="mb-0">R.s. {{ $product->price }}</p>
                 </a>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                    <h6 class="mb-3">Customer Service</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
+            @endforeach
+            @else
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p>Currently no product available!</p>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                    <h6 class="mb-3">Human Resource</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-tasks text-primary mb-4"></i>
-                    <h6 class="mb-3">Project Management</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -310,26 +288,15 @@
     <div class="container">
         <h1 class="text-center mb-5">Our Gallery</h1>
         <div class="owl-carousel testimonial-carousel">
+        @if($gallaryPhotos && count($gallaryPhotos) !== 0)
+        @foreach ($gallaryPhotos as $photo)
             <div class="testimonial-item bg-light rounded p-4">
                 <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded" src="img/gal1.jpg">
+                    <img class="img-fluid flex-shrink-0 rounded" src="/gallary_photos/{{ $photo->photos }}">
                 </div>
             </div>
-            <div class="testimonial-item bg-light rounded p-4">
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded" src="img/gal2.jpg">
-                </div>
-            </div>
-            <div class="testimonial-item bg-light rounded p-4">
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded" src="img/gal3.jpg">
-                </div>
-            </div>
-            <div class="testimonial-item bg-light rounded p-4">
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded" src="img/gal1.jpg">
-                </div>
-            </div>
+        @endforeach
+        @endif
         </div>
     </div>
 </div>
