@@ -82,9 +82,9 @@ Route::prefix('admin')->group(function () {
 });
 
 /******** Portal Routes ************/
-// Route::get('/', function () {
-//     return view('portal.home');
-// });
+Route::get('/', function () {
+    return redirect('home');
+});
 
 Route::get('/home',[PortalLoginController::class,'home'])->name('portal.home');
 
@@ -120,4 +120,10 @@ Route::get('/service/events',[ServiceController::class,'getEvent'])->name('porta
 Route::get('/service/course',[ServiceController::class,'getCourse'])->name('portal.course');
 
 Route::get('/service/news',[ServiceController::class,'getNews'])->name('portal.news');
+
+Route::get('/course/addtocart/{id}',[ServiceController::class,'addToCart']);
+
+Route::get('/cart',[ServiceController::class,'getCart']);
+
+Route::get('/cart/deletecart/{id}',[ServiceController::class,'deleteCart']);
 

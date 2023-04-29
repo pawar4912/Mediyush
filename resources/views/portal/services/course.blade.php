@@ -17,6 +17,15 @@
 
 <!-- Category Start -->
 <div class="container-xxl py-5">
+  @if (session('error'))
+    <div class="col-sm-12">
+        <div class="alert alert-danger">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+  @endif
+
   <div class="container">
       <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore Our Courses</h1>
       <div class="row g-4">
@@ -27,7 +36,10 @@
 							<div class="d-flex align-items-center">
 								<img class="img-fluid flex-shrink-0 rounded" src="/courses/{{$course->banner}}" style="width: 80%; height: 80%">
               </div>
-							<h6 class="mb-3 mt-4">{{ $course->name }}</h6>
+              <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-3 mt-4">{{ $course->name }}</h6>
+                <a class="btn btn-primary" href="/course/addtocart/{{ $course->id }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+              </div>
 						</a>
 				</div>
 			@endforeach

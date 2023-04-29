@@ -4,7 +4,7 @@
                 <div class="row g-5">
                     <div class="col-lg-4 col-md-6">
                         <!-- <img class="img-fluid" src="img/carousel-1.jpg" alt=""> -->
-                        <a href="index.html" class="navbar-brand d-flex py-0">
+                        <a href="/home" class="navbar-brand d-flex py-0">
                             <h1 class="m-0 text-primary">Mediyush</h1>
                         </a>
                         <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a maxime, sapiente iusto quod laboriosam commodi qui magni alias consectetur</p>

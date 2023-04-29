@@ -36,7 +36,7 @@ class JobController extends Controller
   }
 
   public function viewJob(){
-    $jobs=Job::where('status','active')->get();
+    $jobs=Job::where('status','1')->get();
     // dd($jobs);
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
