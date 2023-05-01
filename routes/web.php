@@ -127,3 +127,16 @@ Route::get('/cart',[ServiceController::class,'getCart']);
 
 Route::get('/cart/deletecart/{id}',[ServiceController::class,'deleteCart']);
 
+Route::post('/updateProfile',[PortalLoginController::class,'updateProfile'])->name('updateProfile');
+
+Route::get('/contact', function () {
+    return view('portal.contact');
+});
+
+Route::get('/service/webinar', function () {
+    return view('portal.services.webinar');
+});
+
+Route::get('/service/blog', function () {
+    return view('portal.services.blog');
+});
