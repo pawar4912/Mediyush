@@ -119,4 +119,16 @@ class PortalController extends Controller
     }
     
   }
+
+  public function sendMail(Request $req) {
+    $details = [
+      'title' => $req->subject,
+      'firstName' => $req->firstName,
+      'message' => $req->message
+    ];
+
+    \Mail::to('tejaswinimore47@gmail.com')->send(new \App\Mail\MyMail($details));
+   
+    return redirect()->back()->with('success', 'Message send successfully!');
+  }
 }

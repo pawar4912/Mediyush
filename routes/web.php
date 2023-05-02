@@ -140,3 +140,5 @@ Route::get('/service/webinar', function () {
 Route::get('/service/blog', function () {
     return view('portal.services.blog');
 });
+
+Route::post('/contact/sendmail',[PortalLoginController::class,'sendMail'])->name('sendmail');
