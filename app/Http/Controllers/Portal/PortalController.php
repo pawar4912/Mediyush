@@ -84,4 +84,51 @@ class PortalController extends Controller
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
     return view('portal.home', compact('events', 'products', 'gallaryPhotos'));
   }
+
+  public function updateProfile(Request $req) {
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      $req->validate([
+        'firstName' => 'required',
+        'lastName' => 'required',
+        'experience' => 'required',
+        'skills' => 'required',
+        'qualification' => 'required'
+    ]);
+  
+      $users = User::find($user->id);
+
+      if($req->cv != ''){  
+        if($users->cv != ''  && $users->cv != null){
+          $file_old = public_path('cv').'/'.$users->photos;
+          unlink($file_old);
+        }
+        $imageName = time().'.'.$req->cv->extension();  
+        $req->cv->move(public_path('cv'), $imageName);
+        $users->cv = $imageName;
+      }
+
+      $users->first_name = $req->firstName;
+      $users->last_name = $req->lastName;
+      $users->experience = $req->experience;
+      $users->skills = $req->skills;
+      $users->qualification = $req->qualification;
+
+      $users->update();
+      return back()->with('success','Profile Updated Successfully!!');
+    }
+    
+  }
+
+  public function sendMail(Request $req) {
+    $details = [
+      'title' => $req->subject,
+      'firstName' => $req->firstName,
+      'message' => $req->message
+    ];
+
+    \Mail::to('tejaswinimore47@gmail.com')->send(new \App\Mail\MyMail($details));
+   
+    return redirect()->back()->with('success', 'Message send successfully!');
+  }
 }

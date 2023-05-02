@@ -50,6 +50,10 @@ class JobController extends Controller
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
 
+      if ($user->cv === null || $user->experience === null || $user->skills === null || $user->qualification === null) {
+        return back()->with('error','Update your profile!');
+      }
+
       $job = new Job_Application();
       $job->userid = $user->id;
       $job->jobid = $id;

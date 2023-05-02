@@ -44,7 +44,15 @@
         <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
-                  @foreach($jobs as $job)
+                    @if (session('error'))
+                        <div class="col-sm-12">
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    @endif
+                    @foreach($jobs as $job)
                     <div class="job-item p-4 mb-4" >
                         <div class="row g-4">
                             <div class="col-sm-12 col-md-8 d-flex align-items-center">
