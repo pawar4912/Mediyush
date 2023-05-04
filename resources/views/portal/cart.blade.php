@@ -34,6 +34,9 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                 @if($carts && count($carts) !== 0)
+                @php
+                    $total = 0;
+                @endphp
                 @foreach($carts as $cart)
                     <div class="job-item p-4 mb-4" >
                         <div class="row g-4">
@@ -50,15 +53,39 @@
                                 <div class="d-flex mb-3">
                                     <a href="/cart/deletecart/{{ $cart->id }}"><i class="fa fa-trash text-danger me-2"></i></a>
                                 </div>
+                                <div class="d-flex mb-3">
+                                    <p>₹ {{ $cart->price }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @php
+                        $total += $cart->price;
+                    @endphp
                 @endforeach
                 @else
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p>Your cart is empty!</p>
                 </div>
                 @endif
+
+                <div>
+                    <p>Total: {{ $total }}</p>
+                    <form action="/razorpay-payment" method="POST" >
+                        @csrf 
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                        data-key="{{ env('RAZORPAY_KEY') }}"
+                        data-amount="{{ $total }}"
+                        data-buttontext="Pay {{ $total }} RS"
+                        data-name="GeekyAnts official"
+                        data-description="Razorpay payment"
+                        data-image="/images/logo-icon.png"
+                        data-prefill.name="ABC"
+                        data-prefill.email="abc@gmail.com"
+                        data-theme.color="#ff7529">
+                     </script>
+                     </form>
+                </div>
                 </div>
             </div>
         </div>

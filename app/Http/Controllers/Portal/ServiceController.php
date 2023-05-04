@@ -11,6 +11,9 @@ use App\Models\Course;
 use App\Models\cart;
 use Auth;
 use DB;
+use Session;
+use Razorpay\Api\Api;
+use App\Models\Payment;
 
 class ServiceController extends Controller
 {
@@ -67,7 +70,7 @@ class ServiceController extends Controller
 			$logginUser = $user->id;
 			
 			$carts = DB::table('carts')
-            ->select('carts.id', 'courses.start_date', 'courses.end_date', 'courses.auther', 'courses.name', 'courses.banner')
+            ->select('carts.id', 'courses.start_date', 'courses.end_date', 'courses.auther', 'courses.name', 'courses.banner', 'courses.price')
             ->join('users', 'carts.userid', '=', 'users.id')
             ->join('courses', 'carts.courseid', '=', 'courses.id')
 						->where('carts.userid', $logginUser)
@@ -80,5 +83,37 @@ class ServiceController extends Controller
 		$deleteCart = cart::find($id);
 		$deleteCart->delete();
 		return redirect('cart')->with('success','Course remove successfully!!');
+	}
+
+	public function store(Request $request) {
+		$user=Auth::guard('user')->user();
+		$logginUser = $user->id;
+    $input = $request->all();
+    $api = new Api (env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+    $payment = $api->payment->fetch($input['razorpay_payment_id']);
+    if(count($input) && !empty($input['razorpay_payment_id'])) {
+        try {
+            $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
+
+						$cartdetails =  DB::table('carts')
+														->select('*')
+														->where('carts.userid', $logginUser)
+														->get();
+						
+						foreach ($cartdetails as $key=>$value){
+							$payment = Payment::create([
+                'userid' => $value->userid,
+                'courseid' => $value->courseid,
+                'total_price' => $response['amount']/100
+            ]);
+						}
+        } catch(Exceptio $e) {
+            return $e->getMessage();
+            Session::put('error',$e->getMessage());
+            return redirect()->back();
+        }
+    }
+    Session::put('success',('Payment Successful'));
+    return redirect()->back();
 	}
 }
