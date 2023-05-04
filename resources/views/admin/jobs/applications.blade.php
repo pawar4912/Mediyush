@@ -12,7 +12,7 @@
             <main id="main" class="main">
 
                 <div class="pagetitle">
-                    <h1 class="card-title">Job Lists</h1>
+                    <h1 class="card-title">Job Applications</h1>
                 </div>
                 @if (session('success'))
                 <div class="col-sm-12">
@@ -26,13 +26,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Email</th>
-                            <th>Company Name</th>
-                            <th>Phone Number</th>
-                            <th>Company Website</th>
-                            <th class="none">Status</th>
-                            <th class="none">Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -48,42 +44,22 @@
             processing: true
             , responsive: true
             , serverSide: true
-            , ajax: "{{ route('admin.jobs.list') }}"
+            , ajax: "{{ route('admin.jobs.applications', $id) }}"
             , columns: [{
                     data: 'id'
                     , name: 'id'
                 }
                 , {
-                    data: 'name'
-                    , name: 'name'
+                    data: 'first_name'
+                    , name: 'first_name'
+                }
+                , {
+                    data: 'last_name'
+                    , name: 'last_name'
                 }
                 , {
                     data: 'email'
                     , name: 'email'
-                }
-                , {
-                    data: 'company_name'
-                    , name: 'company_name'
-                }
-                , {
-                    data: 'phone_number'
-                    , name: 'phone_number'
-                }
-                , {
-                    data: 'company_website'
-                    , name: 'company_website'
-                }
-                , {
-                    data: 'status_change'
-                    , name: 'status_change'
-                    , orderable: false
-                    , searchable: false
-                }
-                , {
-                    data: 'action'
-                    , name: 'action'
-                    , orderable: false
-                    , searchable: false
                 }
             , ]
         , });

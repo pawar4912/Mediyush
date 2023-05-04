@@ -12,7 +12,7 @@
             <main id="main" class="main">
                 <div class="card col-md-7">
                     <div class="card-body">
-                        <h5 class="card-title">Add Gallary Photo</h5>
+                        <h5 class="card-title">Edit Gallary Photo</h5>
 
                         @if($errors->any())
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
