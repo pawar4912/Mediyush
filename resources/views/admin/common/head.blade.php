@@ -26,5 +26,5 @@
     <link href="{{ asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
-
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
 </head>

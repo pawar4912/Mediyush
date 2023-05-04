@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/jobs/list',[AdminJobController::class,'getJobs'])->name('admin.jobs.list');
         Route::get('/jobs/activate/{id}',[AdminJobController::class,'jobActivate'])->name('admin.jobs.activate');
         Route::get('/jobs/deactivate/{id}',[AdminJobController::class,'jobDeactivate'])->name('admin.jobs.deactivate');
+        Route::get('/jobs/edit/{id}',[AdminJobController::class,'getJobForEdit']);
         Route::post('/jobs/edit/{id}',[AdminJobController::class,'jobEdit'])->name('admin.jobs.edit');
 
         Route::get('/events/list',[AdminEventController::class,'getEvents'])->name('admin.events.list');
