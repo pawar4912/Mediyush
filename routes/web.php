@@ -153,3 +153,5 @@ Route::get('/service/blog', function () {
 });
 
 Route::post('/contact/sendmail',[PortalLoginController::class,'sendMail'])->name('sendmail');
+
+Route::post('razorpay-payment',[ServiceController::class,'store'])->name('razorpay.payment.store');
