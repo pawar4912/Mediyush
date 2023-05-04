@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\GallaryPhotosController as AdminGallaryPhotosController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 use App\Http\Controllers\Portal\ServiceController as ServiceController;
@@ -26,7 +27,9 @@ Route::prefix('admin')->group(function () {
     Route::get('login', function () {
         return view('admin.login');
     });
-
+    Route::get('/', function () {
+        return redirect('admin/dashboard');
+    });
     Route::post('login',[AdminAuthController::class,'adminLogin'])->name('admin.login');
     Route::group(['middleware' => ['admin']], function () {
         Route::get('dashboard', function () {
@@ -37,6 +40,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/jobs/deactivate/{id}',[AdminJobController::class,'jobDeactivate'])->name('admin.jobs.deactivate');
         Route::get('/jobs/edit/{id}',[AdminJobController::class,'getJobForEdit']);
         Route::post('/jobs/edit/{id}',[AdminJobController::class,'jobEdit'])->name('admin.jobs.edit');
+        Route::get('/jobs/applications/{id}',[AdminJobController::class,'jobApplications'])->name('admin.jobs.applications');
 
         Route::get('/events/list',[AdminEventController::class,'getEvents'])->name('admin.events.list');
         Route::get('/events/add', function () {
@@ -68,7 +72,13 @@ Route::prefix('admin')->group(function () {
         Route::post('/products/edit/{id}',[AdminProductController::class,'editProduct'])->name('admin.products.edit');
         Route::get('/products/delete/{id}',[AdminProductController::class,'deleteProducts']);
 
-        Route::get('/news/list',[AdminProductController::class,'getProductPhotos'])->name('admin.news.list');
+        Route::get('/news/list',[AdminNewsController::class,'getNews'])->name('admin.news.list');
+        Route::get('/news/add', function () {
+            return view('admin.news.add');
+        });
+        Route::post('/news/add',[AdminNewsController::class,'newsAdd'])->name('admin.news.add');
+        Route::get('/news/edit/{id}',[AdminNewsController::class,'getEditNews'])->name('admin.news.edit');
+        Route::post('/news/edit/{id}',[AdminNewsController::class,'editNews']);
 
         Route::get('/courses/list',[AdminCourseController::class,'getCourses'])->name('admin.courses.list');
         Route::get('/courses/add', function () {
