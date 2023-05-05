@@ -19,7 +19,7 @@ class ServiceController extends Controller
 {
 	public function getEvent()
 	{
-		$events = Event::orderBy('id', 'DESC')->get();
+		$events = Event::orderBy('id', 'DESC')->where('status', '1')->get();
 		return view('portal.services.event', compact('events'));
 	}
 
@@ -104,7 +104,7 @@ class ServiceController extends Controller
 							$payment = Payment::create([
                 'userid' => $value->userid,
                 'courseid' => $value->courseid,
-                'total_price' => $response['amount']/100
+                'total_price' => $response['amount']
             ]);
 						}
         } catch(Exceptio $e) {
@@ -115,5 +115,52 @@ class ServiceController extends Controller
     }
     Session::put('success',('Payment Successful'));
     return redirect()->back();
+	}
+
+	public function contact(){
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.contact',compact('user'));
+    }
+
+    return view('portal.contact');
+  }
+
+	public function webinar(){
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.services.webinar',compact('user'));
+    }
+
+    return view('portal.services.webinar');
+  }
+
+	public function blog(){
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.services.blog',compact('user'));
+    }
+
+    return view('portal.services.blog');
+  }
+
+	public function getSingleCourse($id) {
+		$details = Course::find($id);
+		if(Auth::guard('user')->user()){
+			$user=Auth::guard('user')->user();
+      return view('portal.services.coursedesc',compact('user', 'details'));
+		}
+
+		return view('portal.services.coursedesc',compact('details'));
+	}
+
+	public function getSingleEvent($id) {
+		$details = Event::find($id);
+		if(Auth::guard('user')->user()){
+			$user=Auth::guard('user')->user();
+      return view('portal.services.eventdesc',compact('user', 'details'));
+		}
+
+		return view('portal.services.eventdesc',compact('details'));
 	}
 }

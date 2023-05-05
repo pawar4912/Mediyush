@@ -140,18 +140,18 @@ Route::get('/cart/deletecart/{id}',[ServiceController::class,'deleteCart']);
 
 Route::post('/updateProfile',[PortalLoginController::class,'updateProfile'])->name('updateProfile');
 
-Route::get('/contact', function () {
-    return view('portal.contact');
-});
+Route::get('/contact',[PortalLoginController::class,'contact']);
 
-Route::get('/service/webinar', function () {
-    return view('portal.services.webinar');
-});
+Route::get('/about',[PortalLoginController::class,'about']);
 
-Route::get('/service/blog', function () {
-    return view('portal.services.blog');
-});
+Route::get('/service/webinar',[ServiceController::class,'webinar']);
+
+Route::get('/service/blog',[ServiceController::class,'blog']);
 
 Route::post('/contact/sendmail',[PortalLoginController::class,'sendMail'])->name('sendmail');
 
 Route::post('razorpay-payment',[ServiceController::class,'store'])->name('razorpay.payment.store');
+
+Route::get('/course/desc/{id}',[ServiceController::class,'getSingleCourse']);
+
+Route::get('/event/desc/{id}',[ServiceController::class,'getSingleEvent']);

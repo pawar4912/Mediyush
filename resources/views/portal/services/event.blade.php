@@ -23,7 +23,7 @@
       @if($events && count($events) !== 0)
       @foreach ($events as $event)
 				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-						<a class="cat-item rounded p-4" href="#">
+						<a class="cat-item rounded p-4" href="/event/desc/{{ $event->id }}" style="height: 55%">
 							<div class="d-flex align-items-center">
 								<img class="img-fluid flex-shrink-0 rounded" src="/events/{{$event->image}}">
               </div>
