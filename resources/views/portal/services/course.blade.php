@@ -32,13 +32,14 @@
       @if($course && count($course) !== 0)
       @foreach ($course as $course)
 				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-						<a class="cat-item rounded p-4" href="#">
+						<a class="cat-item rounded p-4" href="/course/desc/{{ $course->id }}" style="height: 55%">
 							<div class="d-flex align-items-center">
-								<img class="img-fluid flex-shrink-0 rounded" src="/courses/{{$course->banner}}" style="width: 80%; height: 80%">
+								<img class="img-fluid " src="/courses/{{$course->banner}}" >
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <h6 class="mb-3 mt-4">{{ $course->name }}</h6>
-                <a class="btn btn-primary" href="/course/addtocart/{{ $course->id }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <p>Price: ₹ {{ number_format($course->price) }}</p>
+                <a class="btn btn-primary" href="/course/addtocart/{{ $course->id }}">Add to cart</a>
               </div>
 						</a>
 				</div>

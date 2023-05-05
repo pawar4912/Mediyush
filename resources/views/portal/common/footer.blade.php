@@ -23,19 +23,10 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="">Webinar</a>
-                        <a class="btn btn-link text-white-50" href="">Courses</a>
-                        <a class="btn btn-link text-white-50" href="">Events</a>
-                        <a class="btn btn-link text-white-50" href="">Events</a>
+                        <a class="btn btn-link text-white-50" href="/service/webinar">Webinar</a>
+                        <a class="btn btn-link text-white-50" href="/service/course">Courses</a>
+                        <a class="btn btn-link text-white-50" href="/service/events">Events</a>
                     </div>
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Newsletter</h5>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="container">

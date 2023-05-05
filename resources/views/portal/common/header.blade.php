@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <a href="/job" class="nav-item nav-link">Jobs</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
                     <a href="/contact" class="nav-item nav-link">Contact</a>
                     @if(isset($user->id))
                     <a href="/cart" class="nav-item nav-link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>

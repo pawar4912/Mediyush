@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DB;
 use Session;
 use App\Models\Event;
 use App\Models\Product;
 use App\Models\GallaryPhoto;
+use App\Models\Payment;
 
 class PortalController extends Controller
 {
@@ -57,7 +59,15 @@ class PortalController extends Controller
   public function myAcnt(){
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.profile',compact('user'));
+      $logginUser = $user->id;
+			
+			$details = DB::table('payments')
+            ->select('payments.id', 'courses.start_date', 'courses.end_date', 'courses.auther', 'courses.name', 'courses.banner', 'courses.price')
+            ->join('users', 'payments.userid', '=', 'users.id')
+            ->join('courses', 'payments.courseid', '=', 'courses.id')
+						->where('payments.userid', $logginUser)
+						->get();
+      return view('portal.profile',compact('user', 'details'));
     }
   }
 
@@ -82,6 +92,11 @@ class PortalController extends Controller
     $products = Product::orderBy('id', 'DESC')->limit(4)->get();
 
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
+
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user'));
+    }
     return view('portal.home', compact('events', 'products', 'gallaryPhotos'));
   }
 
@@ -120,6 +135,15 @@ class PortalController extends Controller
     
   }
 
+  public function contact(){
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.contact',compact('user'));
+    }
+
+    return view('portal.contact');
+  }
+
   public function sendMail(Request $req) {
     $details = [
       'title' => $req->subject,
@@ -130,5 +154,14 @@ class PortalController extends Controller
     \Mail::to('tejaswinimore47@gmail.com')->send(new \App\Mail\MyMail($details));
    
     return redirect()->back()->with('success', 'Message send successfully!');
+  }
+
+  public function about(){
+    if(Auth::guard('user')->user()){
+      $user=Auth::guard('user')->user();
+      return view('portal.about',compact('user'));
+    }
+
+    return view('portal.about');
   }
 }

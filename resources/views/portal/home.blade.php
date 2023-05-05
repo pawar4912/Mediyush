@@ -40,7 +40,7 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Webinars</h1>
-            <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            <a href="/service/webinar"><p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p></a>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -150,7 +150,7 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Events</h1>
-            <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            <a href="/service/events"><p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p></a>
         </div>
         <div class="row g-4">
             @if($events && count($events) !== 0)
@@ -180,7 +180,7 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Products</h1>
-            <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            <!-- <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p> -->
         </div>
         <div class="row g-4">
             @if($products && count($products) !== 0)
@@ -210,7 +210,7 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Blogs</h1>
-            <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            <a href="/service/blog"></a><p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -247,7 +247,7 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">News</h1>
-            <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            <a href="/service/news"><p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p></a>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">

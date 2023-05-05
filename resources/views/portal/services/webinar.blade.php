@@ -8,7 +8,7 @@
           <ol class="breadcrumb text-uppercase">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Services</a></li>
-              <li class="breadcrumb-item text-white active" aria-current="page">Events</li>
+              <li class="breadcrumb-item text-white active" aria-current="page">Webinar</li>
           </ol>
       </nav>
   </div>
