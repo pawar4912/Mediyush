@@ -39,73 +39,34 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="lable-head">
-            <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Webinars</h1>
+            <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Webinar</h1>
             <a href="/service/webinar"><p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p></a>
         </div>
         <div class="row g-4">
+            @if($webinars && count($webinars) !== 0)
+            @foreach ($webinars as $webinar)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                 <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h6 class="mb-3">Marketing</h6>
-                    <p class="mb-0">123 Vacancy</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/webinar/{{$webinar->image}}">
+                    </div>
+                    <h6 class="mb-3">{{ $webinar->name }}</h6>
+                    <p class="mb-0">{{ $webinar->venue }}</p>
                 </a>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                    <h6 class="mb-3">Customer Service</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
+            @endforeach
+            @else
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p>Webinar no events available!</p>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                    <h6 class="mb-3">Human Resource</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-tasks text-primary mb-4"></i>
-                    <h6 class="mb-3">Project Management</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <!-- <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
-                    <h6 class="mb-3">Business Development</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-hands-helping text-primary mb-4"></i>
-                    <h6 class="mb-3">Sales & Communication</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-book-reader text-primary mb-4"></i>
-                    <h6 class="mb-3">Teaching & Education</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item rounded p-4" href="">
-                    <i class="fa fa-3x fa-drafting-compass text-primary mb-4"></i>
-                    <h6 class="mb-3">Design & Creative</h6>
-                    <p class="mb-0">123 Vacancy</p>
-                </a>
-            </div> -->
+            @endif
         </div>
     </div>
 </div>
 <!-- Webinar End -->
 
 <!-- Workshop Start -->
-<div class="container-xxl py-5">
+<!-- <div class="container-xxl py-5">
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Workshop</h1>
@@ -142,7 +103,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Workshop End -->
 
 <!-- Events Start -->

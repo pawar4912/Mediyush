@@ -8,12 +8,14 @@ use App\Models\Event;
 use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Course;
+use App\Models\News;
 use App\Models\cart;
 use Auth;
 use DB;
 use Session;
 use Razorpay\Api\Api;
 use App\Models\Payment;
+use App\Models\Webinar;
 
 class ServiceController extends Controller
 {
@@ -34,11 +36,11 @@ class ServiceController extends Controller
 		}
 	}
 
-	// public function getNews()
-	// {
-	// 	$course = Course::orderBy('id', 'DESC')->get();
-	// 	return view('portal.services.course', compact('course'));
-	// }
+	public function getNews()
+	{
+		$news = News::orderBy('id', 'DESC')->get();
+		return view('portal.services.news', compact('news'));
+	}
 
 	public function addToCart($id, Request $req)
 	{
@@ -127,12 +129,13 @@ class ServiceController extends Controller
   }
 
 	public function webinar(){
+		$webinar = Webinar::orderBy('id', 'DESC')->where('status', '1')->get();
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.services.webinar',compact('user'));
+      return view('portal.services.webinar',compact('user', 'webinar'));
     }
 
-    return view('portal.services.webinar');
+    return view('portal.services.webinar',compact('webinar'));
   }
 
 	public function blog(){

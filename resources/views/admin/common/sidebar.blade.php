@@ -44,6 +44,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/webinar/list">
+                <i class="ri-store-3-line"></i><span>Webinar</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/logout">
                 <i class="ri-logout-circle-r-line"></i><span>Log Out</span>
             </a>

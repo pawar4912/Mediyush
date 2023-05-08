@@ -13,6 +13,7 @@ use App\Models\Event;
 use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Payment;
+use App\Models\Webinar;
 
 class PortalController extends Controller
 {
@@ -87,17 +88,19 @@ class PortalController extends Controller
   }
 
   public function home(){
-    $events = Event::orderBy('id', 'DESC')->limit(4)->get();
+    $events = Event::orderBy('id', 'DESC')->where('status', '1')->limit(4)->get();
 
     $products = Product::orderBy('id', 'DESC')->limit(4)->get();
 
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
 
+    $webinars = Webinar::orderBy('id', 'DESC')->where('status', '1')->limit(4)->get();
+
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user'));
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'webinars', 'user'));
     }
-    return view('portal.home', compact('events', 'products', 'gallaryPhotos'));
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'webinars'));
   }
 
   public function updateProfile(Request $req) {

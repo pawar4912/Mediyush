@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 use App\Http\Controllers\Portal\ServiceController as ServiceController;
+use App\Http\Controllers\Admin\WebinarController as WebinarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/courses/edit/{id}',[AdminCourseController::class,'editCourse']);
         
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+
+        Route::get('/webinar/list',[WebinarController::class,'getWebinar'])->name('admin.webinar.list');
+        Route::get('/webinar/add', function () {
+            return view('admin.webinar.add');
+        });
+        Route::post('/webinar/add',[WebinarController::class,'webinarAdd'])->name('admin.webinar.add');
+        Route::get('/webinar/edit/{id}',[WebinarController::class,'getEditWebinar']);
+        Route::post('/webinar/edit/{id}',[WebinarController::class,'editWebinar'])->name('admin.webinar.edit');
+        Route::get('/webinar/activate/{id}',[WebinarController::class,'webinarActivate']);
+        Route::get('/webinar/deactivate/{id}',[WebinarController::class,'webinarDeactivate']);
     });
 });
 

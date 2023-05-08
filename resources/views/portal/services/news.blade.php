@@ -20,14 +20,14 @@
   <div class="container">
       <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">News</h1>
       <div class="row g-4">
-      @if($events && count($events) !== 0)
-      @foreach ($events as $event)
+      @if($news && count($news) !== 0)
+      @foreach ($news as $data)
 				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
 						<a class="cat-item rounded p-4" href="#">
 							<div class="d-flex align-items-center">
-								<img class="img-fluid flex-shrink-0 rounded" src="/events/{{$event->image}}">
+								<img class="img-fluid flex-shrink-0 rounded" src="/news/{{$data->image}}">
               </div>
-							<h6 class="mb-3 mt-4">{{ $event->name }}</h6>
+							<h6 class="mb-3 mt-4">{{ $data->title }}</h6>
 						</a>
 				</div>
 			@endforeach
