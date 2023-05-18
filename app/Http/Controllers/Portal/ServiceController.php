@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Course;
 use App\Models\cart;
+use App\Models\News;
 use Auth;
 use DB;
 use Session;
@@ -34,11 +35,11 @@ class ServiceController extends Controller
 		}
 	}
 
-	// public function getNews()
-	// {
-	// 	$course = Course::orderBy('id', 'DESC')->get();
-	// 	return view('portal.services.course', compact('course'));
-	// }
+	public function getNews()
+	{
+		$news = News::orderBy('id', 'DESC')->get();
+		return view('portal.services.news', compact('news'));
+	}
 
 	public function addToCart($id, Request $req)
 	{

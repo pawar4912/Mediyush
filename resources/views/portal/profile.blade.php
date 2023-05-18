@@ -119,7 +119,7 @@
                                 <div class="text-start ps-4">
                                     <h5 class="mb-3">{{ $detail->name }}</h5>
                                     <span class="text-truncate me-3"><i class="fa fa-user text-primary me-2"></i>By {{ $detail->auther }}</span>
-                                    <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
+                                    <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $detail->start_date }} to {{ $detail->end_date }}</span>
                                     <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>₹ {{ number_format($detail->price) }}</span>
                                 </div>
                             </div>

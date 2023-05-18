@@ -10,6 +10,7 @@ use Auth;
 use DB;
 use Session;
 use App\Models\Event;
+use App\Models\News;
 use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Payment;
@@ -91,13 +92,15 @@ class PortalController extends Controller
 
     $products = Product::orderBy('id', 'DESC')->limit(4)->get();
 
+    $news = News::orderBy('id', 'DESC')->limit(4)->get();
+
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
 
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user'));
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news'));
     }
-    return view('portal.home', compact('events', 'products', 'gallaryPhotos'));
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news'));
   }
 
   public function updateProfile(Request $req) {

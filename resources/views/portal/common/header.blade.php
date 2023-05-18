@@ -61,8 +61,8 @@
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="/service/course" class="dropdown-item">Course</a>
                             <a href="/service/events" class="dropdown-item">Events</a>
-                            <a href="/service/webinar" class="dropdown-item">Webinar</a>
-                            <a href="/service/blog" class="dropdown-item">Blog</a>
+                            {{-- <a href="/service/webinar" class="dropdown-item">Webinar</a>
+                            <a href="/service/blog" class="dropdown-item">Blog</a> --}}
                             <a href="/service/news" class="dropdown-item">News</a>
                         </div>
                     </div>
