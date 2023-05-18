@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GallaryPhotosController as AdminGallaryPhotosCont
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 use App\Http\Controllers\Portal\ServiceController as ServiceController;
@@ -87,6 +88,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/courses/add',[AdminCourseController::class,'CourseAdd'])->name('admin.courses.add');
         Route::get('/courses/edit/{id}',[AdminCourseController::class,'getEditCourse']);
         Route::post('/courses/edit/{id}',[AdminCourseController::class,'editCourse']);
+
+        Route::get('/videos/list',[AdminVideoController::class,'getVideos'])->name('admin.videos.list');
+        Route::get('/videos/add', function () {
+            return view('admin.videos.add');
+        });
+        Route::post('/videos/add',[AdminVideoController::class,'videoAdd'])->name('admin.videos.add');
+        Route::get('/videos/edit/{id}',[AdminVideoController::class,'getEditVideo']);
+        Route::post('/videos/edit/{id}',[AdminVideoController::class,'editVideo']);
+        Route::get('/videos/delete/{id}',[AdminVideoController::class,'deleteVideo']);
+
         
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
     });

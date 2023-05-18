@@ -44,6 +44,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/videos/list">
+                <i class="ri-youtube-line"></i><span>Video</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/logout">
                 <i class="ri-logout-circle-r-line"></i><span>Log Out</span>
             </a>

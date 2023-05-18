@@ -294,6 +294,26 @@
 </div>
 <!-- Gallery End -->
 
+<!-- Videos Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="text-center mb-5">Our Videos</h1>
+        <div class="row g-4">
+            @if($videos && count($videos) !== 0)
+            @foreach ($videos as $video)
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="d-flex align-items-center">
+                    <iframe width="420" height="315" src="{{ $video->link }}">
+                    </iframe>
+                </div>
+            </div>
+            @endforeach
+            @endif
+        </div>
+    </div>
+</div>
+<!-- Videos End -->
+
 <!-- Testimonial Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">

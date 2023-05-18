@@ -14,6 +14,7 @@ use App\Models\News;
 use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Payment;
+use App\Models\Video;
 
 class PortalController extends Controller
 {
@@ -94,13 +95,15 @@ class PortalController extends Controller
 
     $news = News::orderBy('id', 'DESC')->limit(4)->get();
 
+    $videos = Video::orderBy('id', 'DESC')->limit(4)->get();
+
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
 
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news'));
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news', 'videos'));
     }
-    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news'));
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news',  'videos'));
   }
 
   public function updateProfile(Request $req) {
