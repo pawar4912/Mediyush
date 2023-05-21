@@ -17,9 +17,10 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="/service/webinar">Webinar</a>
                         <a class="btn btn-link text-white-50" href="/service/course">Courses</a>
                         <a class="btn btn-link text-white-50" href="/service/events">Events</a>
+                        <a class="btn btn-link text-white-50" href="/service/news">News</a>
+                        <a class="btn btn-link text-white-50" href="/feedback">Feedback Us</a>
                     </div>
                 </div>
             </div>

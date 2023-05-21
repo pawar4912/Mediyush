@@ -10,6 +10,7 @@ use App\Models\GallaryPhoto;
 use App\Models\Course;
 use App\Models\cart;
 use App\Models\News;
+use App\Models\Feedback;
 use Auth;
 use DB;
 use Session;
@@ -163,5 +164,23 @@ class ServiceController extends Controller
 		}
 
 		return view('portal.services.eventdesc',compact('details'));
+	}
+
+	public function feedback() {
+		if(Auth::guard('user')->user()){
+			return view('portal.feedback');
+		}
+		return redirect('login?redirect=feedback')->with('error','For feedback please login first');
+	}
+
+	public function submitFeedback(Request $req) {
+		if(Auth::guard('user')->user()){
+			$feedback = new Feedback;
+			$feedback->message = $req->message;
+			$feedback->userid = Auth::guard('user')->user()->id;
+			$feedback->save();
+			return redirect()->back()->with('success','Course remove successfully!!');
+		}
+		return redirect('login?redirect=feedback')->with('error','For feedback please login first');
 	}
 }

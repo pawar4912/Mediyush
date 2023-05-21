@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\VideoController as AdminVideoController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 use App\Http\Controllers\Portal\ServiceController as ServiceController;
@@ -98,6 +99,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/videos/edit/{id}',[AdminVideoController::class,'editVideo']);
         Route::get('/videos/delete/{id}',[AdminVideoController::class,'deleteVideo']);
 
+        Route::get('/feedbacks/list',[AdminFeedbackController::class,'getFeedbacks'])->name('admin.feedbacks.list');
+        Route::get('/feedbacks/delete/{id}',[AdminFeedbackController::class,'deleteFeedback']);
+        Route::get('/feedbacks/approve/{id}',[AdminFeedbackController::class,'approveFeedback']);
         
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
     });
@@ -166,3 +170,7 @@ Route::post('razorpay-payment',[ServiceController::class,'store'])->name('razorp
 Route::get('/course/desc/{id}',[ServiceController::class,'getSingleCourse']);
 
 Route::get('/event/desc/{id}',[ServiceController::class,'getSingleEvent']);
+
+Route::get('/feedback',[ServiceController::class,'feedback']);
+
+Route::post('/feedback',[ServiceController::class,'submitFeedback']);

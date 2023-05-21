@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\GallaryPhoto;
 use App\Models\Payment;
 use App\Models\Video;
+use App\Models\Feedback;
 
 class PortalController extends Controller
 {
@@ -52,9 +53,9 @@ class PortalController extends Controller
     );
     
     if(Auth::guard('user')->attempt($user_data)) {
-      return redirect('job');
+      return redirect($request->redirect);
     } else{
-      return redirect()->back()->with('flash_message_error', 'Wrong Login Details');
+      return redirect()->back()->with('error', 'Wrong Login Details');
     }
   }
 
@@ -96,14 +97,16 @@ class PortalController extends Controller
     $news = News::orderBy('id', 'DESC')->limit(4)->get();
 
     $videos = Video::orderBy('id', 'DESC')->limit(4)->get();
+  
+    $feedbacks = User::select('feedback.*', 'users.first_name', 'users.last_name')->join('feedback', 'feedback.userid', '=', 'users.id')->orderBy('created_at', 'DESC')->get();
 
     $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
 
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news', 'videos'));
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news', 'videos', 'feedbacks'));
     }
-    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news',  'videos'));
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news',  'videos', 'feedbacks'));
   }
 
   public function updateProfile(Request $req) {

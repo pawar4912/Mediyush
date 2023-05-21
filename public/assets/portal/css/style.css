@@ -391,10 +391,14 @@
     padding-right: 0;
     border-right: none;
 }
-.alert-dismissible .btn-close {
+.btn-close {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 2;
     padding: 1.25rem 1rem;
+}
+.feedback-form-wrapper{
+    display: flex;
+    justify-content: space-around;
 }
