@@ -53,7 +53,7 @@ class PortalController extends Controller
     );
     
     if(Auth::guard('user')->attempt($user_data)) {
-      return redirect($request->redirect);
+      return redirect(isset($request->redirect) ? $request->redirect : '/');
     } else{
       return redirect()->back()->with('error', 'Wrong Login Details');
     }
@@ -64,11 +64,10 @@ class PortalController extends Controller
       $user=Auth::guard('user')->user();
       $logginUser = $user->id;
 			
-			$details = DB::table('payments')
-            ->select('payments.id', 'courses.start_date', 'courses.end_date', 'courses.auther', 'courses.name', 'courses.banner', 'courses.price')
-            ->join('users', 'payments.userid', '=', 'users.id')
-            ->join('courses', 'payments.courseid', '=', 'courses.id')
-						->where('payments.userid', $logginUser)
+			$details = DB::table('purchased_courses')
+            ->select('courses.*')
+            ->join('courses', 'purchased_courses.course_id', '=', 'courses.id')
+						->where('purchased_courses.userid', $logginUser)
 						->get();
       return view('portal.profile',compact('user', 'details'));
     }

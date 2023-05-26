@@ -182,19 +182,24 @@
     <div class="container">
         <div class="lable-head">
             <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Products</h1>
-            <!-- <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p> -->
+            <a href="/all-products">
+                <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            </a>
         </div>
         <div class="row g-4">
             @if($products && count($products) !== 0)
             @foreach ($products as $product)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item rounded p-4" href="">
-                    <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded" src="/products/{{ $product->image }}">
-                    </div>
-                    <h6 class="mb-3 mt-3">{{ $product->name }}</h6>
-                    <p class="mb-0">R.s. {{ $product->price }}</p>
-                </a>
+                <div class="d-flex flex-column justify-content-center">
+                    <a class="cat-item rounded p-4" href="/product/desc/{{ $product->id }}">
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="/products/{{ $product->image }}">
+                        </div>
+                        <h6 class="mb-3 mt-3">{{ $product->name }}</h6>
+                        <p class="mb-0">₹ {{ $product->price }}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/product/addtocart/{{ $product->id }}">Add to cart</a>
+                </div>
             </div>
             @endforeach
             @else

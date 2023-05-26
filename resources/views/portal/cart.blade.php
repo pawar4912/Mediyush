@@ -33,29 +33,50 @@
                     @php
                     $total = 0;
                     @endphp
-                    @if($carts && count($carts) !== 0)
-                    @foreach($carts as $cart)
+                    @if(count($cartCources) !== 0 || count($cartProducts) !== 0)
+                    @foreach($cartCources as $cartCource)
                     <div class="row">
                         <div class="col-8 d-flex align-items-center">
-                            <img class="flex-shrink-0 img-fluid border rounded" src="/courses/{{$cart->banner}}" alt="" style="width: 80px; height: 80px;">
+                            <img class="flex-shrink-0 img-fluid border rounded" src="/courses/{{$cartCource->banner}}" alt="" style="width: 80px; height: 80px;">
                             <div class="text-start ps-4">
-                                <h5 class="mb-3">{{ $cart->name }}</h5>
-                                <span class="text-truncate me-3"><i class="fa fa-user text-primary me-2"></i>By {{ $cart->auther }}</span>
-                                <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $cart->start_date }} to {{ $cart->end_date }}</span>
-                                <span class="text-truncate me-0"><i class="far fa-calendar-alt text-primary me-2"></i>{{ $cart->start_date }} To {{ $cart->end_date }}</span>
+                                <h5 class="mb-3">{{ $cartCource->name }}</h5>
+                                <span class="text-truncate me-3"><i class="fa fa-user text-primary me-2"></i>By {{ $cartCource->auther }}</span>
+                                <span class="text-truncate me-0"><i class="far fa-calendar-alt text-primary me-2"></i>{{ $cartCource->start_date }} To {{ $cartCource->end_date }}</span>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="d-flex mb-3">
-                                <a href="/cart/deletecart/{{ $cart->id }}"><i class="fa fa-trash text-danger me-2"></i></a>
+                                <a href="/cart/deletecart/{{ $cartCource->cart_id }}"><i class="fa fa-trash text-danger me-2"></i></a>
                             </div>
                             <div class="d-flex mb-3">
-                                <p>₹ {{ $cart->price }}</p>
+                                <p>₹ {{ $cartCource->price }}</p>
                             </div>
                         </div>
                     </div>
                     @php
-                    $total += $cart->price;
+                    $total += $cartCource->price;
+                    @endphp
+                    @endforeach
+                    @foreach($cartProducts as $cartProduct)
+                    <div class="row">
+                        <div class="col-8 d-flex align-items-center">
+                            <img class="flex-shrink-0 img-fluid border rounded" src="products/{{$cartProduct->image}}" alt="" style="width: 80px; height: 80px;">
+                            <div class="text-start ps-4">
+                                <h5 class="mb-3">{{ $cartProduct->name }}</h5>
+                                <p>{{ $cartProduct->description }}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex mb-3">
+                                <a href="/cart/deletecart/{{ $cartProduct->cart_id }}"><i class="fa fa-trash text-danger me-2"></i></a>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <p>₹ {{ $cartProduct->price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                    $total += $cartProduct->price;
                     @endphp
                     @endforeach
                     @else

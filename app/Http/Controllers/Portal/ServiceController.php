@@ -16,6 +16,8 @@ use DB;
 use Session;
 use Razorpay\Api\Api;
 use App\Models\Payment;
+use App\Models\PurchasedCourse;
+use App\Models\ProductOrders;
 
 class ServiceController extends Controller
 {
@@ -48,20 +50,40 @@ class ServiceController extends Controller
 			$user=Auth::guard('user')->user();
 
 			$logginUser = $user->id;
-			$courseId = $id;
-			$isAddedToCart = cart::where('userid', $logginUser)->where('courseid', $courseId)->get();
+			$isAddedToCart = cart::where('userid', $logginUser)->where('entity_id', $id)->where('entity_type', 'course')->first();
 
-			if ($isAddedToCart && count($isAddedToCart) !== 0) {
+			if ($isAddedToCart) {
 				return back()->with('error','Course already in cart');
 			}
 
 			$cart = new cart();
-      $cart->userid = $logginUser;
-      $cart->courseid = $courseId;
-      $cart->save();
+			$cart->userid = $logginUser;
+			$cart->entity_id = $id;
+			$cart->entity_type = 'course';
+			$cart->save();
 			return redirect('cart');
 		} else {
-			return back()->with('error','Please login first');
+			return redirect('login?redirect=/service/course')->with('error','Please login first');
+		}
+	}
+
+	public function addToCartProduct($id, Request $req) {
+		if(Auth::guard('user')->user()){
+			$user=Auth::guard('user')->user();
+			$logginUser = $user->id;
+			$isAddedToCart = cart::where('userid', $logginUser)->where('entity_id', $id)->where('entity_type', 'product')->first();
+			if ($isAddedToCart) {
+				return back()->with('error','Product already in cart');
+			}
+
+			$cart = new cart();
+			$cart->userid = $logginUser;
+			$cart->entity_type = 'product';
+			$cart->entity_id = $id;
+			$cart->save();
+			return redirect('cart');
+		} else {
+			return  redirect('login?redirect=/all-products')->with('error','Please login first');
 		}
 	}
 
@@ -71,13 +93,21 @@ class ServiceController extends Controller
 			$user=Auth::guard('user')->user();
 			$logginUser = $user->id;
 			
-			$carts = DB::table('carts')
-            ->select('carts.id', 'courses.start_date', 'courses.end_date', 'courses.auther', 'courses.name', 'courses.banner', 'courses.price')
+			$cartCources = DB::table('carts')
+            ->select('courses.*', 'carts.id as cart_id')
             ->join('users', 'carts.userid', '=', 'users.id')
-            ->join('courses', 'carts.courseid', '=', 'courses.id')
-						->where('carts.userid', $logginUser)
-						->get();
-			return view('portal.cart',compact('carts', 'user'));
+            ->join('courses', 'carts.entity_id', '=', 'courses.id')
+			->where('carts.userid', $logginUser)
+			->where('carts.entity_type', 'course')
+			->get();
+			$cartProducts = DB::table('carts')
+            ->select('products.*', 'carts.id as cart_id')
+            ->join('users', 'carts.userid', '=', 'users.id')
+            ->join('products', 'carts.entity_id', '=', 'products.id')
+			->where('carts.userid', $logginUser)
+			->where('carts.entity_type', 'product')
+			->get();
+			return view('portal.cart',compact('cartCources', 'cartProducts', 'user'));
 		}
 	}
 
@@ -93,22 +123,34 @@ class ServiceController extends Controller
     $input = $request->all();
     $api = new Api (env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
     $payment = $api->payment->fetch($input['razorpay_payment_id']);
+	$amount = $payment['amount'];
     if(count($input) && !empty($input['razorpay_payment_id'])) {
         try {
             $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
-
-						$cartdetails =  DB::table('carts')
-														->select('*')
-														->where('carts.userid', $logginUser)
-														->get();
+			$payment = new Payment();
+			$payment->transaction_id = $input['razorpay_payment_id'];
+			$payment->total_price = $amount;
+			$payment->userid = $logginUser;
+			$payment->save();
+			$cartdetails =  DB::table('carts')->select('*')->where('carts.userid', $logginUser)->get();
 						
-						foreach ($cartdetails as $key=>$value){
-							$payment = Payment::create([
-                'userid' => $value->userid,
-                'courseid' => $value->courseid,
-                'total_price' => $response['amount']
-            ]);
-						}
+			foreach ($cartdetails as $key=>$value){
+				if ($value->entity_type == 'product') {
+					$prod = Product::find($value->entity_id);
+					$product_order = new ProductOrders;
+					$product_order->payment_id = $payment->id;
+					$product_order->userid = $logginUser;
+					$product_order->products = json_encode(array('id' => $value->entity_id, 'amount' => $prod->price));
+					$product_order->save();
+				} else {
+					$purchased_course = new PurchasedCourse;
+					$purchased_course->payment_id = $payment->id;
+					$purchased_course->course_id = $value->entity_id;
+					$purchased_course->userid = $logginUser;
+					$purchased_course->save();
+				}
+			}
+			DB::table('carts')->select('*')->where('carts.userid', $logginUser)->delete();
         } catch(Exceptio $e) {
             return $e->getMessage();
             Session::put('error',$e->getMessage());
@@ -160,9 +202,8 @@ class ServiceController extends Controller
 		$details = Event::find($id);
 		if(Auth::guard('user')->user()){
 			$user=Auth::guard('user')->user();
-      return view('portal.services.eventdesc',compact('user', 'details'));
+      		return view('portal.services.eventdesc',compact('user', 'details'));
 		}
-
 		return view('portal.services.eventdesc',compact('details'));
 	}
 
@@ -182,5 +223,10 @@ class ServiceController extends Controller
 			return redirect()->back()->with('success','Course remove successfully!!');
 		}
 		return redirect('login?redirect=feedback')->with('error','For feedback please login first');
+	}
+
+	public function productsView(Request $req) {
+		$products = Product::orderBy('id', 'DESC')->get();
+		return view('portal.products', compact('products'));
 	}
 }

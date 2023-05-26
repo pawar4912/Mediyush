@@ -174,3 +174,7 @@ Route::get('/event/desc/{id}',[ServiceController::class,'getSingleEvent']);
 Route::get('/feedback',[ServiceController::class,'feedback']);
 
 Route::post('/feedback',[ServiceController::class,'submitFeedback']);
+
+Route::get('/all-products',[ServiceController::class,'productsView'])->name('products');
+
+Route::get('/product/addtocart/{id}',[ServiceController::class,'addToCartProduct']);

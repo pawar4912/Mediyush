@@ -69,13 +69,13 @@
                     <a href="/job" class="nav-item nav-link">Jobs</a>
                     <a href="/about" class="nav-item nav-link">About</a>
                     <a href="/contact" class="nav-item nav-link">Contact</a>
-                    @if(isset($user->id))
+                    @if(Auth::guard('user')->user())
                     <a href="/cart" class="nav-item nav-link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     <a href="/logout" class="nav-item nav-link"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
                     @endif
                 </div>
 
-                @if(isset($user->id))
+                @if(Auth::guard('user')->user())
                   <a href="/myaccount" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">My Account<i class="fa fa-arrow-right ms-3"></i></a>
                 @else
                 <a href="/login" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
