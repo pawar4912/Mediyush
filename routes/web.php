@@ -160,6 +160,7 @@ Route::get('/service/news',[ServiceController::class,'getNews'])->name('portal.n
 Route::get('/course/addtocart/{id}',[ServiceController::class,'addToCart']);
 
 Route::get('/cart',[ServiceController::class,'getCart']);
+Route::post('/cart',[ServiceController::class,'getCart']);
 
 Route::get('/cart/deletecart/{id}',[ServiceController::class,'deleteCart']);
 

@@ -18,6 +18,7 @@ use Razorpay\Api\Api;
 use App\Models\Payment;
 use App\Models\PurchasedCourse;
 use App\Models\ProductOrders;
+use App\Models\Coupon;
 
 class ServiceController extends Controller
 {
@@ -87,9 +88,12 @@ class ServiceController extends Controller
 		}
 	}
 
-	public function getCart()
+	public function getCart(Request $request)
 	{
 		if(Auth::guard('user')->user()){
+			if ($request->post()) {
+				$coupon = Coupon::where('code', $request->coupon_code)->first();
+			}
 			$user=Auth::guard('user')->user();
 			$logginUser = $user->id;
 			
@@ -107,7 +111,26 @@ class ServiceController extends Controller
 			->where('carts.userid', $logginUser)
 			->where('carts.entity_type', 'product')
 			->get();
-			return view('portal.cart',compact('cartCources', 'cartProducts', 'user'));
+			$total = 0;
+			foreach($cartCources as $cartCource) {
+				$total += $cartCource->price;
+			}
+			foreach($cartProducts as $cartProduct) {
+				$total += $cartProduct->price;
+			}
+			$coupon_applied = 0;
+			$discount = 0;
+			if($coupon) {
+				if ($coupon->minimum_amount_required <= $total) {
+					$coupon_applied = 1;
+					if ($coupon->type= 'percentage') {
+						$discount = ($total/100)*$coupon->percentage;
+					} else if($coupon->type= 'fix_price'){
+						$discount = $total-$coupon->amount;
+					}
+				}
+			}
+			return view('portal.cart',compact('cartCources', 'cartProducts', 'user', 'discount', 'total', 'coupon_applied'));
 		}
 	}
 
