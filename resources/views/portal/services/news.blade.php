@@ -23,7 +23,7 @@
       @if($news && count($news) !== 0)
       @foreach ($news as $n)
 				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-						<a class="cat-item rounded p-4" href="#">
+						<a class="cat-item rounded p-4" href="/news/desc/{{ $n->id }}">
 							<div class="d-flex align-items-center">
 								<img class="img-fluid flex-shrink-0 rounded" src="/news/{{$n->image}}">
               </div>

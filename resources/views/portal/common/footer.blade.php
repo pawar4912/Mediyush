@@ -7,7 +7,7 @@
                         <a href="/home" class="navbar-brand d-flex py-0">
                             <h1 class="m-0 text-primary">Mediyush</h1>
                         </a>
-                        <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a maxime, sapiente iusto quod laboriosam commodi qui magni alias consectetur</p>
+                        <p class="mt-2">We Epiphany that there is a need of common platform for all professonal to learn various courses of there interest and we are providing a platform for the same.</p>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Contact</h5>
@@ -28,7 +28,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">mediyush</a>, All Right Reserved.
+                            &copy; <a class="border-bottom" href="/">mediyush</a>, All Right Reserved.
                         </div>
                         {{-- <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

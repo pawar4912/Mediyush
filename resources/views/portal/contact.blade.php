@@ -28,7 +28,7 @@
                           <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
                               <i class="fa fa-envelope-open text-primary"></i>
                           </div>
-                          <span>info@example.com</span>
+                          <span>contactus@mediyush.com</span>
                       </div>
                   </div>
                   <div class="col-md-4 wow fadeIn" data-wow-delay="0.5s">
@@ -36,7 +36,7 @@
                           <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
                               <i class="fa fa-phone-alt text-primary"></i>
                           </div>
-                          <span>+012 345 6789</span>
+                          <span>8805516777</span>
                       </div>
                   </div>
               </div>
