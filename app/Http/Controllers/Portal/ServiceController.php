@@ -229,4 +229,22 @@ class ServiceController extends Controller
 		$products = Product::orderBy('id', 'DESC')->get();
 		return view('portal.products', compact('products'));
 	}
+
+	public function getSingleProduct($id) {
+		$product = Product::find($id);
+		if(Auth::guard('user')->user()){
+			$user=Auth::guard('user')->user();
+      		return view('portal.services.proddesc',compact('user', 'product'));
+		}
+		return view('portal.services.proddesc',compact('product'));
+	}
+
+	public function getSingleNews($id) {
+		$news = News::find($id);
+		if(Auth::guard('user')->user()){
+			$user=Auth::guard('user')->user();
+      		return view('portal.services.newsdesc',compact('user', 'news'));
+		}
+		return view('portal.services.newsdesc',compact('news'));
+	}
 }

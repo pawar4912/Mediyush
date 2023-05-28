@@ -9,8 +9,7 @@
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Find The Perfect Job That You Deserved</h1>
-                            <!-- <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p> -->
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
+                            <a href="/job" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
                         </div>
                     </div>
                 </div>
@@ -23,8 +22,7 @@
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Enroll Your Course</h1>
-                            <!-- <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p> -->
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Enroll Now</a>
+                            <a href="/contact" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Enroll Now</a>
                         </div>
                     </div>
                 </div>
@@ -158,7 +156,7 @@
             @if($events && count($events) !== 0)
             @foreach ($events as $event)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item rounded p-4" href="">
+                <a class="cat-item rounded p-4" href="/event/desc/{{ $event->id }}">
                     <div class="d-flex align-items-center">
                         <img class="img-fluid flex-shrink-0 rounded" src="/events/{{$event->image}}">
                     </div>
@@ -262,7 +260,7 @@
             @if($news && count($news) !== 0)
             @foreach ($news as $n)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item rounded p-4" href="">
+                <a class="cat-item rounded p-4" href="/news/desc/{{ $n->id }}">
                     <div class="d-flex align-items-center">
                         <img class="img-fluid flex-shrink-0 rounded" src="/news/{{$n->image}}">
                     </div>
