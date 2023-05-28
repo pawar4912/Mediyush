@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
+use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Portal\PortalController as PortalLoginController;
 use App\Http\Controllers\Portal\JobController as JobController;
 use App\Http\Controllers\Portal\ServiceController as ServiceController;
@@ -102,6 +103,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/feedbacks/list',[AdminFeedbackController::class,'getFeedbacks'])->name('admin.feedbacks.list');
         Route::get('/feedbacks/delete/{id}',[AdminFeedbackController::class,'deleteFeedback']);
         Route::get('/feedbacks/approve/{id}',[AdminFeedbackController::class,'approveFeedback']);
+
+        Route::get('/coupons/list',[AdminCouponController::class,'getCoupons'])->name('admin.coupons.list');
+        Route::get('/coupons/add', function () {
+            return view('admin.coupons.add');
+        });
+        Route::post('/coupons/add',[AdminCouponController::class,'couponAdd'])->name('admin.coupons.add');
+        Route::get('/coupons/edit/{id}',[AdminCouponController::class,'getEditCoupon']);
+        Route::post('/coupons/edit/{id}',[AdminCouponController::class,'editCoupon']);
+        Route::get('/coupons/delete/{id}',[AdminCouponController::class,'deleteCoupon']);
         
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
     });

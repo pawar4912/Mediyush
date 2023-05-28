@@ -54,6 +54,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/coupons/list">
+                <i class="ri-coupon-3-line"></i><span>Descount Coupons</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/logout">
                 <i class="ri-logout-circle-r-line"></i><span>Log Out</span>
             </a>
