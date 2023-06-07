@@ -37,7 +37,10 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-3 mt-4">{{ $product->name }}</h6>
-                        <p>Price: ₹ {{ number_format($product->price) }}</p>
+                        <div class="d-flex">
+                            <span class="mb-0 original-price">₹ {{ $product->original_price }}</span>
+                            <span class="mb-0">₹ {{ $product->price }}</span>
+                        </div>
                         <a class="btn btn-primary" href="/product/addtocart/{{ $product->id }}">Add to cart</a>
                     </div>
                 </a>

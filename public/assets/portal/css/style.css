@@ -440,3 +440,12 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .original-price{
+    text-decoration: line-through;
+    margin-right: 10px;
+    font-size: 13px;
+    color: #ff0000;
+  }
+  .offered-price{
+    color: #26bc89;
+  }
