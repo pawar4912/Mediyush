@@ -39,6 +39,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/products/orders">
+                <i class="ri-shopping-bag-line"></i><span>Product Orders</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/news/list">
                 <i class="ri-newspaper-line"></i><span>News</span>
             </a>

@@ -56,7 +56,7 @@
                                         <a href="/admin/courses/delete/{{ $course->id }}" class="btn btn-danger">
                                             <i class="ri-delete-bin-4-line"></i>
                                         </a>
-                                        <a href="/admin/courses/users/{{ $course->id }}" class="btn btn-primary">
+                                        <a href="/admin/courses/applications/{{ $course->id }}" class="btn btn-primary">
                                             <i class="ri-eye-fill"></i>
                                         </a>
                                     </td>

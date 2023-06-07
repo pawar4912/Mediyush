@@ -120,7 +120,7 @@ class ServiceController extends Controller
 			}
 			$coupon_applied = 0;
 			$discount = 0;
-			if($coupon) {
+			if($request->post() && $coupon) {
 				if ($coupon->minimum_amount_required <= $total) {
 					$coupon_applied = 1;
 					if ($coupon->type= 'percentage') {
@@ -163,7 +163,8 @@ class ServiceController extends Controller
 					$product_order = new ProductOrders;
 					$product_order->payment_id = $payment->id;
 					$product_order->userid = $logginUser;
-					$product_order->products = json_encode(array('id' => $value->entity_id, 'amount' => $prod->price));
+					$product_order->product_id = $value->entity_id;
+					$product_order->product_price = $prod->price;
 					$product_order->save();
 				} else {
 					$purchased_course = new PurchasedCourse;

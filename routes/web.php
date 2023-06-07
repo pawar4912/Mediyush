@@ -75,6 +75,10 @@ Route::prefix('admin')->group(function () {
         Route::post('/products/edit/{id}',[AdminProductController::class,'editProduct'])->name('admin.products.edit');
         Route::get('/products/delete/{id}',[AdminProductController::class,'deleteProducts']);
 
+        Route::get('/products/orders',[AdminProductController::class,'getProductOrders'])->name('admin.products.orders');
+        Route::get('/products/orders/{id}',[AdminProductController::class,'viewProductOrders'])->name('admin.products.orders.view');
+        Route::get('/products/orders/complete/{id}',[AdminProductController::class,'completeProductOrders']);
+
         Route::get('/news/list',[AdminNewsController::class,'getNews'])->name('admin.news.list');
         Route::get('/news/add', function () {
             return view('admin.news.add');
@@ -90,6 +94,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/courses/add',[AdminCourseController::class,'CourseAdd'])->name('admin.courses.add');
         Route::get('/courses/edit/{id}',[AdminCourseController::class,'getEditCourse']);
         Route::post('/courses/edit/{id}',[AdminCourseController::class,'editCourse']);
+        Route::get('/courses/applications/{id}',[AdminCourseController::class,'courseApplications']);
 
         Route::get('/videos/list',[AdminVideoController::class,'getVideos'])->name('admin.videos.list');
         Route::get('/videos/add', function () {
@@ -118,9 +123,7 @@ Route::prefix('admin')->group(function () {
 });
 
 /******** Portal Routes ************/
-Route::get('/', function () {
-    return redirect('home');
-});
+Route::get('/',[PortalLoginController::class,'home'])->name('portal.home');
 
 Route::get('/home',[PortalLoginController::class,'home'])->name('portal.home');
 

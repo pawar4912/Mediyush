@@ -23,7 +23,6 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quo incidunt accusamus impedit minus quis natus expedita earum unde laboriosam harum voluptate, voluptates molestiae magni consectetur. Reiciendis asperiores consectetur nostrum.</p>
                     @if($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <ul>
@@ -48,14 +47,14 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name" name="userName">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="title" name="name">
+                                    <label for="name">Title</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email" name="email">
-                                    <label for="email">Your Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                                    <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -84,7 +83,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" id="experiance" placeholder="Experience" name="experience">
+                                    <input type="text" class="form-control" id="experiance" placeholder="Experience" name="experience">
                                     <label for="experiance">Experience</label>
                                 </div>
                             </div>

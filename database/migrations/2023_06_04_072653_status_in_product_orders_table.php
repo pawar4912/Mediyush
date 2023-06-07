@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('userid');
-            $table->integer('payment_id');
-            $table->json('products');
-            $table->timestamps();
+        Schema::table('product_orders', function (Blueprint $table) {
+            $table->boolean('status')->default(0);
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('product_orders', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };

@@ -12,7 +12,7 @@ class JobController extends Controller
 {
   public function createJob(Request $req) {
     $req->validate([
-        'userName' => 'required',
+        'name' => 'required',
         'email' => 'required|email',
         'companyName' => 'required',
         'phoneNo' => 'required',
@@ -23,7 +23,7 @@ class JobController extends Controller
     ]);
 
     $job = new Job();
-    $job->name = $req->userName;
+    $job->name = $req->name;
     $job->email = $req->email;
     $job->company_name = $req->companyName;
     $job->phone_number = $req->phoneNo;

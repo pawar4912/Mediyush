@@ -29,7 +29,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Original Price</th>
+                                    <th scope="col">Offered Price</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Action</th>
@@ -40,6 +41,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->name }}</td>
+                                    <td>{{ $product->original_price }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td><img src="/products/{{ $product->image }}" heigth="150" width="150" alt="tag"></td>
                                     <td>{{ $product->description }}</td>

@@ -31,7 +31,11 @@
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label">Price</label>
+                                <label class="form-label">Original Price</label>
+                                <input type="text" class="form-control" id="original_price" name="original_price">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Offered Price</label>
                                 <input type="text" class="form-control" id="price" name="price">
                             </div>
                             <div class="col-md-12">

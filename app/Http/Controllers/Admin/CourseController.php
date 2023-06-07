@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Course;
-
+use App\Models\PurchasedCourse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -70,5 +70,19 @@ class CourseController extends Controller
         $course->end_date = $req->end_date;
         $course->save();
         return redirect('admin/courses/list')->with('success','Course updated successfully !!!');
+    }
+
+    public function courseApplications($id, Request $request) {
+        if ($request->ajax()) {
+            $data = DB::table('purchased_courses')
+                ->select('users.*')
+                ->join('users', 'purchased_courses.userid', '=', 'users.id')
+                ->where('purchased_courses.course_id',$id)
+                ->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->make(true);
+        }
+        return view('admin.courses.applications', compact('id'));
     }
 }

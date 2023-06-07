@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductOrders;
+use DB;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -24,6 +27,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $req->name;
         $product->price = $req->price;
+        $product->original_price = $req->original_price;
         $product->description = $req->description;
         $imageName = time().'.'.$req->image->extension();  
         $req->image->move(public_path('products'), $imageName);
@@ -46,6 +50,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $req->name;
         $product->price = $req->price;
+        $product->original_price = $req->original_price;
         $product->description = $req->description;
         if($req->image != ''){
             if($product->image != ''  && $product->image != null){
@@ -64,5 +69,45 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect('admin/products/list')->with('success','Shop Product delete successfully !!!');
+    }
+
+    public function getProductOrders(Request $request) {
+        if ($request->ajax()) {
+            $data = DB::select('select users.*, product_orders.payment_id as payment_id from product_orders inner join users on product_orders.userid = users.id where status = 0 group by payment_id');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn ='<a href="/admin/products/orders/'.$row->payment_id.'"
+                    class="btn btn-primary"><i class="ri-eye-fill"></i></a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.products.orders');
+    }
+
+    public function viewProductOrders($id, Request $request) {
+        if ($request->ajax()) {
+            $data = DB::table('product_orders')
+                ->select('products.*', 'product_orders.product_price as product_price')
+                ->join('products', 'product_orders.product_id', '=', 'products.id')
+                ->where('product_orders.payment_id',$id)
+                ->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('image', function($row){       
+                    $image ='<img src="/products/'. $row->image .'" heigth="150" width="150" alt="tag">';
+                    return $image;
+                })
+                ->rawColumns(['image'])
+                ->make(true);
+        }
+        return view('admin.products.view-order', compact('id'));
+    }
+
+    public function completeProductOrders($id) {
+        ProductOrders::where('payment_id', $id)->update(['status' => 1]);
+        return redirect('admin/products/orders')->with('success','Order completed successfully !!!');
     }
 }
