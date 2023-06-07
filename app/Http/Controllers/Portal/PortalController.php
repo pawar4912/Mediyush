@@ -16,6 +16,7 @@ use App\Models\GallaryPhoto;
 use App\Models\Payment;
 use App\Models\Video;
 use App\Models\Feedback;
+use App\Models\Course;
 
 class PortalController extends Controller
 {
@@ -96,6 +97,8 @@ class PortalController extends Controller
     $news = News::orderBy('id', 'DESC')->limit(4)->get();
 
     $videos = Video::orderBy('id', 'DESC')->limit(4)->get();
+
+    $courses = Course::orderBy('id', 'DESC')->limit(4)->get();
   
     $feedbacks = User::select('feedback.*', 'users.first_name', 'users.last_name')->join('feedback', 'feedback.userid', '=', 'users.id')->orderBy('created_at', 'DESC')->get();
 
@@ -103,9 +106,9 @@ class PortalController extends Controller
 
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
-      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news', 'videos', 'feedbacks'));
+      return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'user', 'news', 'videos', 'feedbacks', 'courses'));
     }
-    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news',  'videos', 'feedbacks'));
+    return view('portal.home', compact('events', 'products', 'gallaryPhotos', 'news',  'videos', 'feedbacks', 'courses'));
   }
 
   public function updateProfile(Request $req) {

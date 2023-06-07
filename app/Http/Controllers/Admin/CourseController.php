@@ -19,6 +19,7 @@ class CourseController extends Controller
             'name' => 'required',
             'auther' => 'required',
             'description' => 'required',
+            'original_price' => 'required',
             'price' => 'required',
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'start_date' => 'required',
@@ -28,6 +29,7 @@ class CourseController extends Controller
         $course->name = $req->name;
         $course->auther = $req->auther;
         $course->description = $req->description;
+        $course->original_price = $req->original_price;
         $course->price = $req->price;
         $bannerName = time().'.'.$req->banner->extension();  
         $req->banner->move(public_path('courses'), $bannerName);
@@ -49,6 +51,7 @@ class CourseController extends Controller
             'auther' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'original_price' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
@@ -57,6 +60,7 @@ class CourseController extends Controller
         $course->auther = $req->auther;
         $course->description = $req->description;
         $course->price = $req->price;
+        $course->original_price = $req->original_price;
         if($req->banner != ''){
             if($course->banner != ''  && $course->banner != null){
                  $file_old = public_path('courses').'/'.$course->banner;

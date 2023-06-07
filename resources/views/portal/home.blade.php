@@ -175,6 +175,43 @@
 </div>
 <!-- Events End -->
 
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="lable-head">
+            <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Courses</h1>
+            <a href="/service/course">
+                <p class="mb-5 wow fadeInUp lable-btn" data-wow-delay="0.1s">View More<i class="fa fa-arrow-right ms-2"></i></p>
+            </a>
+        </div>
+        <div class="row g-4">
+           @if($courses && count($courses) !== 0)
+            @foreach ($courses as $course)
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item rounded p-4" href="/course/desc/{{ $course->id }}" style="height: 55%">
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid " src="/courses/{{$course->banner}}">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-3 mt-4">{{ $course->name }}</h6>
+                        <p>
+                          Price:
+                            <span class="mb-0 original-price">₹ {{ $course->original_price }}</span>
+                            <span class="mb-0 offered-price">₹ {{ $course->price }}</span>
+                        </p>
+                        <a class="btn btn-primary" href="/course/addtocart/{{ $course->id }}">Add to cart</a>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+             @else
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p>Currently no course is available!</p>
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+
 <!-- Products Start -->
 <div class="container-xxl py-5">
     <div class="container">

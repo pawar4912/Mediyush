@@ -21,6 +21,7 @@ class ProductController extends Controller
         $req->validate([
             'name' => 'required',
             'price' => 'required',
+            'original_price' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

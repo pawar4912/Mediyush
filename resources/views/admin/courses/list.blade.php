@@ -30,7 +30,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Auther</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Original Price</th>
+                                    <th scope="col">Offered Price</th>
                                     <th scope="col">Start Date</th>
                                     <th scope="col">End Date</th>
                                     <th scope="col">Description</th>
@@ -44,6 +45,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $course->name }}</td>
                                     <td>{{ $course->auther }}</td>
+                                    <td>{{ $course->original_price }}</td>
                                     <td>{{ $course->price }}</td>
                                     <td>{{ $course->start_date }}</td>
                                     <td>{{ $course->end_date }}</td>

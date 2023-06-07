@@ -26,7 +26,10 @@
                   <h3 class="mb-3">{{ $details->name }}</h3>
                   <span class="text-truncate me-3"><i class="fa fa-user text-primary me-2"></i>By {{ $details->auther }}</span>
                   <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $details->start_date }} to {{ $details->end_date }}</span>
-                  <span class="text-truncate me-3"><i class="far fa-money-bill-alt text-primary me-2"></i>₹ {{ number_format($details->price) }}</span>
+                  <span class="text-truncate me-3"><i class="far fa-money-bill-alt text-primary me-2"></i>
+                     <span class="mb-0 original-price">₹ {{ $details->original_price }}</span>
+                     <span class="mb-0 offered-price">₹ {{ $details->price }}</span>
+                  </span>
                   <span class="text-truncate me-3"><a class="btn btn-primary" href="/course/addtocart/{{ $details->id }}"><i class="fa fa-shopping-cart me-2" aria-hidden="true"></i></a></span>
                </div>
             </div>
