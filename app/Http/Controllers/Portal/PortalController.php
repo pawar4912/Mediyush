@@ -90,19 +90,19 @@ class PortalController extends Controller
   }
 
   public function home(){
-    $events = Event::orderBy('id', 'DESC')->limit(4)->get();
+    $events = Event::orderBy('id', 'DESC')->get();
 
-    $products = Product::orderBy('id', 'DESC')->limit(4)->get();
+    $products = Product::orderBy('id', 'DESC')->get();
 
-    $news = News::orderBy('id', 'DESC')->limit(4)->get();
+    $news = News::orderBy('id', 'DESC')->get();
 
-    $videos = Video::orderBy('id', 'DESC')->limit(4)->get();
+    $videos = Video::orderBy('id', 'DESC')->get();
 
-    $courses = Course::orderBy('id', 'DESC')->limit(4)->get();
+    $courses = Course::orderBy('id', 'DESC')->get();
   
     $feedbacks = User::select('feedback.*', 'users.first_name', 'users.last_name')->join('feedback', 'feedback.userid', '=', 'users.id')->orderBy('created_at', 'DESC')->get();
 
-    $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->limit(4)->get();
+    $gallaryPhotos = GallaryPhoto::orderBy('position', 'ASC')->get();
 
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();
