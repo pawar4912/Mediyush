@@ -14,11 +14,7 @@ class JobController extends Controller
     $req->validate([
         'name' => 'required',
         'email' => 'required|email',
-        'companyName' => 'required',
         'phoneNo' => 'required',
-        'companywebsite' => 'required',
-        'salary' => 'required',
-        'experience' => 'required',
         'jobdesc' => 'required'
     ]);
 
@@ -36,7 +32,8 @@ class JobController extends Controller
   }
 
   public function viewJob(){
-    $jobs=Job::where('status','1')->get();
+    $jobs=Job::where('status','1')->orderBy('id', 'DESC')->paginate(10);
+    $jobs->withPath('/job');
     // dd($jobs);
     if(Auth::guard('user')->user()){
       $user=Auth::guard('user')->user();

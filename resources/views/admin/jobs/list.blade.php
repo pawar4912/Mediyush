@@ -11,8 +11,11 @@
             @include('admin.common.sidebar')
             <main id="main" class="main">
 
-                <div class="pagetitle">
+                <div class="d-flex pagetitle">
                     <h1 class="card-title">Job Lists</h1>
+                    <div class="add-btn p-2">
+                        <a href="/admin/jobs/add" class="btn btn-outline-primary float-right"> Add Jobs </a>
+                    </div>
                 </div>
                 @if (session('success'))
                 <div class="col-sm-12">

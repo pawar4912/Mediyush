@@ -196,7 +196,7 @@
          </div>
          <div class="carousel-inner" role="listbox">
             @foreach($courses as $key => $course)
-            <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+            <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 {{$key == 0 ? 'active' : '' }}">
                <div class="card" style="width: 18rem;">
                   <img src="/courses/{{$course->banner}}" class="card-img-top" alt="..." style="height: 25vh">
                   <div class="card-body">
@@ -355,7 +355,6 @@
       <div id="featureCarouselvideo" class="carousel slide" data-bs-ride="carousel">
          <h2 class="font-weight-light float-start">Videos</h2>
          <div class="float-end pe-md-4 mb-5">
-            <a class="wow fadeInUp lable-btn view-more">View More</i></a>
             <a class="indicator" href="#featureCarouselvideo" role="button" data-bs-slide="prev">
             <span class="fas fa-chevron-left" aria-hidden="true"></span>
             </a> &nbsp;&nbsp;
@@ -387,25 +386,25 @@
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
    <div class="container">
       <h1 class="text-center mb-5">Our Clients Say!!!</h1>
-      <div class="owl-carousel testimonial-carousel">
-         @if($feedbacks && count($feedbacks) !== 0)
-         @foreach ($feedbacks as $feedback)
-         <div class="testimonial-item bg-light rounded p-4">
-            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-            <p>{{ $feedback->message }}</p>
-            <div class="d-flex align-items-center">
-               <div class="ps-3">
-                  <h5 class="mb-1">{{ $feedback->first_name }} {{ $feedback->last_name }}</h5>
+      @if($feedbacks && count($feedbacks) !== 0)
+         <div class="owl-carousel testimonial-carousel">
+            @foreach ($feedbacks as $feedback)
+            <div class="testimonial-item bg-light rounded p-4">
+               <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+               <p>{{ $feedback->message }}</p>
+               <div class="d-flex align-items-center">
+                  <div class="ps-3">
+                     <h5 class="mb-1">{{ $feedback->first_name }} {{ $feedback->last_name }}</h5>
+                  </div>
                </div>
             </div>
+            @endforeach
          </div>
-         @endforeach
-         @else
-         <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-            <p>Currently no feedback available!</p>
-         </div>
-         @endif
+      @else
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+         <p>Currently no feedback available!</p>
       </div>
+      @endif
    </div>
 </div>
 <!-- Testimonial End -->

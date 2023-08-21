@@ -30,24 +30,25 @@
         <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore Our Courses</h1>
         <div class="row g-4">
             @if($course && count($course) !== 0)
-            @foreach ($course as $course)
+            @foreach ($course as $cor)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item rounded p-4" href="/course/desc/{{ $course->id }}" style="height: 55%">
+                <a class="cat-item rounded p-4" href="/course/desc/{{ $cor->id }}" style="height: 55%">
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid " src="/courses/{{$course->banner}}">
+                        <img class="img-fluid " src="/courses/{{$cor->banner}}">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-3 mt-4">{{ $course->name }}</h6>
+                        <h6 class="mb-3 mt-4">{{ $cor->name }}</h6>
                         <p>
                           Price:
-                            <span class="mb-0 original-price">₹ {{ $course->original_price }}</span>
-                            <span class="mb-0 offered-price">₹ {{ $course->price }}</span>
+                            <span class="mb-0 original-price">₹ {{ $cor->original_price }}</span>
+                            <span class="mb-0 offered-price">₹ {{ $cor->price }}</span>
                         </p>
-                        <a class="btn btn-primary" href="/course/addtocart/{{ $course->id }}">Add to cart</a>
+                        <a class="btn btn-primary" href="/course/addtocart/{{ $cor->id }}">Add to cart</a>
                     </div>
                 </a>
             </div>
             @endforeach
+            {{ $course->links() }}
             @else
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                 <p>Currently no course is available!</p>

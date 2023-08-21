@@ -39,6 +39,10 @@ Route::prefix('admin')->group(function () {
             return view('admin.dashboard');
         });
         Route::get('/jobs/list',[AdminJobController::class,'getJobs'])->name('admin.jobs.list');
+        Route::get('/jobs/add', function () {
+            return view('admin.jobs.add');
+        });
+        Route::post('/jobs/add',[AdminJobController::class,'createJob'])->name('admin.jobs.add');
         Route::get('/jobs/activate/{id}',[AdminJobController::class,'jobActivate'])->name('admin.jobs.activate');
         Route::get('/jobs/deactivate/{id}',[AdminJobController::class,'jobDeactivate'])->name('admin.jobs.deactivate');
         Route::get('/jobs/edit/{id}',[AdminJobController::class,'getJobForEdit']);

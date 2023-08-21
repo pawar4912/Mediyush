@@ -79,4 +79,26 @@ class JobController extends Controller
         }
         return view('admin.jobs.applications', compact('id'));
     }
+
+    public function createJob(Request $req) {
+        $req->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'description' => 'required'
+        ]);
+    
+        $job = new Job();
+        $job->name = $req->name;
+        $job->email = $req->email;
+        $job->company_name = $req->company_name;
+        $job->phone_number = $req->phone_number;
+        $job->company_website = $req->company_website;
+        $job->salary = $req->salary;
+        $job->experience = $req->experience;
+        $job->description = $req->description;
+        $job->status = 1;
+        $job->save();
+        return redirect('admin/jobs/list')->with('success','Job added successfully !!!');
+    }
 }

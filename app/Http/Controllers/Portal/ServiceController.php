@@ -30,7 +30,8 @@ class ServiceController extends Controller
 
 	public function getCourse()
 	{
-		$course = Course::orderBy('id', 'DESC')->get();
+		$course = Course::orderBy('id', 'DESC')->paginate(8);
+		$course->withPath('/service/course');
 		if(Auth::guard('user')->user()){
 			$user=Auth::guard('user')->user();
 			return view('portal.services.course',compact('user', 'course'));
